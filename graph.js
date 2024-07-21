@@ -1,4 +1,14 @@
 var renderer, scene, camera, container;
+
+var colors = {
+  red: 0xff0000,
+  green: 0x00ff00,
+  blue: 0x0000ff,
+  white: 0xffffff,
+  black: 0x000000,
+  gray: 0x808080,
+};
+
 var arSource,
   arContext,
   arMarker = [];
@@ -44,8 +54,8 @@ function init() {
     new THREE.Vector3(data.length * barSpacing, 0, 0)
   );
   var xAxisMaterial = new THREE.LineBasicMaterial({
-    color: 0xff0000,
-    linewidth: 10,
+    color: colors.red,
+    linewidth: 6,
   }); // Thicker line
   var xAxis = new THREE.Line(xAxisGeometry, xAxisMaterial);
   scene.add(xAxis);
@@ -55,8 +65,8 @@ function init() {
   yAxisGeometry.vertices.push(new THREE.Vector3(0, 0, 0));
   yAxisGeometry.vertices.push(new THREE.Vector3(0, Math.max(...data) / 2, 0));
   var yAxisMaterial = new THREE.LineBasicMaterial({
-    color: 0x00ff00,
-    linewidth: 10,
+    color: colors.red,
+    linewidth: 6,
   }); // Thicker line
   var yAxis = new THREE.Line(yAxisGeometry, yAxisMaterial);
   scene.add(yAxis);
@@ -71,7 +81,7 @@ function init() {
         size: 0.5,
         height: 0.1,
       });
-      var textMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      var textMaterial = new THREE.MeshBasicMaterial({ color: colors.green });
       var title = new THREE.Mesh(textGeometry, textMaterial);
       title.position.set(0, Math.max(...data) / 2 + 1, 0);
       scene.add(title);
@@ -82,7 +92,7 @@ function init() {
         size: 0.2,
         height: 0.05,
       });
-      var xLabelMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      var xLabelMaterial = new THREE.MeshBasicMaterial({ color: colors.gray });
       var xLabel = new THREE.Mesh(xLabelGeometry, xLabelMaterial);
       xLabel.position.set((data.length * barSpacing) / 2, -0.5, 0);
       scene.add(xLabel);
@@ -92,7 +102,7 @@ function init() {
         size: 0.2,
         height: 0.05,
       });
-      var yLabelMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      var yLabelMaterial = new THREE.MeshBasicMaterial({ color: colors.gray });
       var yLabel = new THREE.Mesh(yLabelGeometry, yLabelMaterial);
       yLabel.position.set(-1, Math.max(...data) / 4, 0);
       scene.add(yLabel);
